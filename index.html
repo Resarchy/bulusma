@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buluşalım mı? 🗓️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ================= EKRAN 1: KARŞILAMA / EVET - HAYIR ================= -->
+  <section id="screen-welcome" class="screen active">
+    <div class="card">
+      <div class="emoji-big">🐱</div>
+      <h1 class="title">Buluşalım mı?</h1>
+      <p class="subtitle">Bir kahve ☕, bir sohbet... Kısa süreli keyifli mola! 😊</p>
+
+      <div class="btn-group">
+        <button id="btn-yes" class="btn btn-primary">Evet 😄</button>
+        <button id="btn-no" class="btn btn-ghost">Hayır 🤔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EKRAN 2: DETAY SEÇİM FORMU ================= -->
+  <section id="screen-form" class="screen">
+    <div class="card">
+      <div class="emoji-big">🗓️</div>
+      <h1 class="title">Detayları Seç</h1>
+      <p class="subtitle">Planı birlikte yapalım! ☕🐱</p>
+
+      <form id="detail-form" autocomplete="off">
+
+        <!-- Buluşma Amacı -->
+        <fieldset class="form-group">
+          <legend>Buluşma Amacı</legend>
+          <div class="choice-row" id="purpose-group">
+            <label class="choice">
+              <input type="radio" name="purpose" value="Ders" />
+              <span>Ders 📚</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="purpose" value="Eğlence" />
+              <span>Eğlence 🎮</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Mekan -->
+        <fieldset class="form-group">
+          <legend>Mekan</legend>
+          <div class="choice-row" id="place-group">
+            <label class="choice">
+              <input type="radio" name="place" value="Waffle" />
+              <span>Waffle 🧇</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="place" value="Pablo" />
+              <span>Pablo 🧀</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="place" value="Starbucks" />
+              <span>Starbucks ☕</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="place" value="other" id="other-radio" />
+              <span>Siz Ekleyin ✏️</span>
+            </label>
+          </div>
+          <input
+            type="text"
+            id="custom-place"
+            class="text-input hidden"
+            placeholder="Kendi mekanını yaz... (örn. Kahve Dünyası)"
+            maxlength="60"
+          />
+        </fieldset>
+
+        <!-- Tarih & Saat -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="date-input">Tarih</label>
+            <input type="date" id="date-input" class="text-input" />
+          </div>
+          <div class="form-group">
+            <label for="time-input">Saat</label>
+            <input type="time" id="time-input" class="text-input" />
+          </div>
+        </div>
+
+        <!-- Ek notlar -->
+        <div class="form-group">
+          <label for="notes-input">Eklemek istedikleriniz</label>
+          <textarea
+            id="notes-input"
+            class="text-input"
+            rows="3"
+            placeholder="Notlar, öneriler, istekler... 😊"
+            maxlength="300"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Tarihi Ayarla / Gönder 🚀</button>
+      </form>
+
+      <button id="btn-back" class="btn-link">← Geri dön</button>
+    </div>
+  </section>
+
+  <!-- ================= EKRAN 3: ÖZET ================= -->
+  <section id="screen-summary" class="screen">
+    <div class="card">
+      <div class="emoji-big">📋</div>
+      <h1 class="title">Plan Özeti</h1>
+      <p class="subtitle">İşte yapılan seçimler 👇</p>
+
+      <ul class="summary-list" id="summary-list">
+        <!-- script.js tarafından doldurulur -->
+      </ul>
+
+      <div class="screenshot-warning">📸 Lütfen bu ekranın ekran görüntüsünü alınız!</div>
+    </div>
+  </section>
+
+  <!-- ================= POP-UP: HAYIR UYARISI ================= -->
+  <div id="toast" class="toast hidden" role="alert"></div>
+
+  <!-- ================= POP-UP: SON SEVİNCE EKRANI ================= -->
+  <div id="modal-celebrate" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="cat-sticker">
+        <span class="cat-emoji">😸</span>
+        <span class="confetti">🎉</span>
+        <span class="confetti c2">🎊</span>
+        <span class="confetti c3">✨</span>
+      </div>
+      <h2>Harika! Tarih ayarlandı 🥳</h2>
+      <p id="modal-score-text" class="modal-score"></p>
+      <button id="btn-close-modal" class="btn btn-primary">Tamam 👌</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

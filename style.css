@@ -1,0 +1,415 @@
+/* ============================================================
+   BULUŞMA PLANLAYICI — Gece Modu Teması
+   Koyu, şık ve göz yormayan renk paleti.
+   ============================================================ */
+
+:root {
+  --bg: #0f1420;            /* sayfa arka planı */
+  --bg-soft: #171e2e;       /* kart arka planı */
+  --bg-input: #1f2940;      /* input arka planı */
+  --border: #2c3a57;        /* kenarlıklar */
+  --text: #e8edf7;          /* ana metin */
+  --text-dim: #93a1bd;      /* ikincil metin */
+  --accent: #4cc38a;        /* vurgu (nane yeşili) */
+  --accent-dark: #2f9e6e;
+  --warning: #f5b942;       /* turuncu-amber uyarı */
+  --radius: 16px;
+  --shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(ellipse at top, #1a2338 0%, var(--bg) 60%);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* ---------------- Ekranlar ---------------- */
+
+.screen {
+  display: none;
+  width: 100%;
+  max-width: 560px;
+  animation: fadeIn 0.4s ease;
+}
+
+.screen.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------- Kart ---------------- */
+
+.card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px 32px;
+  text-align: center;
+}
+
+.emoji-big {
+  font-size: 64px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.3px;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+
+/* ---------------- Butonlar ---------------- */
+
+.btn {
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  color: #06130d;
+  box-shadow: 0 6px 18px rgba(76, 195, 138, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 26px rgba(76, 195, 138, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: var(--bg-input);
+  color: var(--text);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-link {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 14px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn-link:hover {
+  color: var(--text);
+}
+
+/* ---------------- Form ---------------- */
+
+form {
+  text-align: left;
+}
+
+.form-group {
+  border: none;
+  margin-bottom: 22px;
+}
+
+.form-group legend,
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.choice {
+  position: relative;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice span {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text);
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.choice span:hover {
+  border-color: var(--accent);
+}
+
+.choice input:checked + span {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #06130d;
+  font-weight: 700;
+}
+
+.text-input {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  color-scheme: dark; /* date/time picker için koyu tema */
+}
+
+.text-input:focus {
+  border-color: var(--accent);
+}
+
+textarea.text-input {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-row {
+  display: flex;
+  gap: 14px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---------------- Özet Listesi ---------------- */
+
+.summary-list {
+  list-style: none;
+  text-align: left;
+  margin: 8px 0 24px;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-input);
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.summary-list .key {
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.summary-list .value {
+  font-weight: 600;
+  text-align: right;
+  word-break: break-word;
+}
+
+.screenshot-warning {
+  background: rgba(245, 185, 66, 0.12);
+  border: 1px solid var(--warning);
+  color: var(--warning);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-weight: 700;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.02); }
+}
+
+/* ---------------- Toast (Hayır uyarısı) ---------------- */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  background: var(--bg-input);
+  border: 1px solid var(--warning);
+  color: var(--text);
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  z-index: 100;
+  animation: toastIn 0.3s ease;
+  white-space: nowrap;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ---------------- Modal (Sevinç ekranı) ---------------- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 15, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+  padding: 20px;
+}
+
+.modal {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 40px 32px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+.modal h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modal-score {
+  color: var(--text-dim);
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Kedi sticker alanı */
+.cat-sticker {
+  position: relative;
+  font-size: 72px;
+  margin-bottom: 14px;
+  animation: bounce 0.8s ease infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-10px); }
+}
+
+.confetti {
+  position: absolute;
+  font-size: 26px;
+  top: -10px;
+  left: -20px;
+  animation: spin 2.2s linear infinite;
+}
+
+.confetti.c2 {
+  top: -16px;
+  left: auto;
+  right: -24px;
+  animation-duration: 2.8s;
+}
+
+.confetti.c3 {
+  top: 30px;
+  right: -34px;
+  left: auto;
+  animation-duration: 1.8s;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ---------------- Mobil ---------------- */
+
+@media (max-width: 480px) {
+  .card {
+    padding: 28px 20px;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+  .toast {
+    white-space: normal;
+    text-align: center;
+    width: 90%;
+  }
+}
